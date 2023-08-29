@@ -18,6 +18,9 @@ module.exports = () => {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
+    devServer:{
+      hot: 'only'  // Enable HMR, no full-page reload fallback
+    },
     plugins: [
       //  simplifies the creation of HTML files that serve the webpack bundles.
       new HtmlWebpackPlugin({ 

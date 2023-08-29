@@ -38,11 +38,20 @@ module.exports = () => {
     module: {
       rules: [
         {
-          test: /\.css$/,
-          use: [
-            MiniCssExtractPlugin.loader(), //injects stlyes to the DOM                    
-            'css-loader,' //interprets import/require() and resolves them
-          ]
+          test: /\.css$/i,
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          // We use babel-loader in order to use ES6.
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+            },
+          },
         },
         {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -55,16 +64,6 @@ module.exports = () => {
             },
           ],
         },
-        {
-          test: /\.m?js$/,
-          exclude: /(node_modules|bower_components)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
-          }
-        }
       ],
     },
   };

@@ -23,7 +23,13 @@ module.exports = () => {
 
     module: {
       rules: [
-        
+        {
+          test: /\.css$/,
+          use: [
+            'style-loader', //injects stlyes to the DOM
+            'css-loader,' //interprets import/require() and resolves them
+          ]
+        }
       ],
     },
   };

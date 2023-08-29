@@ -29,7 +29,18 @@ module.exports = () => {
             'style-loader', //injects stlyes to the DOM
             'css-loader,' //interprets import/require() and resolves them
           ]
-        }
+        },
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                outputPath: 'images',
+              },
+            },
+          ],
+        },
       ],
     },
   };

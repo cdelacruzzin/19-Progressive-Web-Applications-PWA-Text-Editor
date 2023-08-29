@@ -18,7 +18,11 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      //  simplifies the creation of HTML files that serve the webpack bundles.
+      new HtmlWebpackPlugin({ 
+        template: './index.html', //specifies the HTML file that the plugin will use as a templte
+        title: 'Text Editor'  // sets the title of the output html file
+      })
     ],
 
     module: {

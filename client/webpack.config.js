@@ -29,6 +29,10 @@ module.exports = () => {
       }),
 
       new MiniCssExtractPlugin(), //extracts CSS into separate files
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js'
+      })
     ],
 
     module: {

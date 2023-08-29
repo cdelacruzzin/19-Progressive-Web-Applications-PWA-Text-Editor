@@ -23,6 +23,18 @@ if (typeof editor === 'undefined') {
   loadSpinner();
 }
 
+// This is a runtime check to see if the HMR interface is available. If it is, `module.hot.accept()` tells the HMR runtime that this module (and all of its dependencies) should be updated without refreshing the entire page.
+if(module.hot){
+  module.hot.accept( (err)=>{
+    if(err){
+      console.error('Cannot apply HMR update.', err);
+    }
+  })
+}
+
+
+
+
 // Check if service workers are supported
 if ('serviceWorker' in navigator) {
   // register workbox service worker

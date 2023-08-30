@@ -18,12 +18,12 @@ module.exports = () => {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
-    devServer:{
+    devServer: {
       hot: 'only'  // Enable HMR, no full-page reload fallback
     },
     plugins: [
       //  simplifies the creation of HTML files that serve the webpack bundles.
-      new HtmlWebpackPlugin({ 
+      new HtmlWebpackPlugin({
         template: './index.html', //specifies the HTML file that the plugin will use as a templte
         title: 'Text Editor'  // sets the title of the output html file
       }),
@@ -32,7 +32,27 @@ module.exports = () => {
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js'
-      })
+      }),
+      // Creates a manifest.json file.
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        name: 'Contact Cards',
+        short_name: 'Contact',
+        description: 'Never forget your contacts!',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: './',
+        publicPath: './',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+      }),
+
     ],
 
     module: {
